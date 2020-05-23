@@ -114,7 +114,7 @@ def shell_download(request, uuid):
         raise Http404()
 
     extension.downloads += 1
-    extension.save(replace_metadata_json=False)
+    extension.save()
 
     return redirect(version.source.url)
 
@@ -378,7 +378,7 @@ def ajax_upload_screenshot_view(request, extension):
 
     extension.screenshot = data
     extension.full_clean()
-    extension.save(replace_metadata_json=False)
+    extension.save()
     return extension.screenshot.url
 
 @ajax_view
@@ -391,7 +391,7 @@ def ajax_upload_icon_view(request, extension):
 
     extension.icon = data
     extension.full_clean()
-    extension.save(replace_metadata_json=False)
+    extension.save()
     return extension.icon.url
 
 def ajax_details(extension, version=None):
