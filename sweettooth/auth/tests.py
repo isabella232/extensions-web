@@ -12,7 +12,6 @@ from django_registration import validators
 
 from django.contrib.auth import get_user_model
 from django.test.testcases import TestCase
-from django.utils.six import text_type
 from .forms import AutoFocusRegistrationForm, RegistrationForm
 
 User = get_user_model()
@@ -49,7 +48,7 @@ class AuthTests(RegistrationDataTest):
         self.assertFalse(form.is_valid())
         self.assertEqual(
             form.errors['email'],
-            [text_type(validators.DUPLICATE_EMAIL)]
+            [str(validators.DUPLICATE_EMAIL)]
         )
 
         form = AutoFocusRegistrationForm(
